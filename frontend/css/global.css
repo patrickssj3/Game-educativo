@@ -1,0 +1,206 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #181f1b;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #f4f1e8;
+}
+
+.app {
+  width: 95%;
+  max-width: 1100px;
+  margin: 20px auto;
+}
+
+.intro {
+  margin-bottom: 16px;
+}
+
+.intro p,
+.etapa {
+  color: #a8b59f;
+  font-size: 14px;
+}
+
+.intro h1 {
+  color: #9ad17b;
+  margin: 6px 0;
+}
+
+.intro h2 {
+  font-size: 18px;
+  font-weight: normal;
+  color: #d7ddcf;
+}
+
+.progress-box {
+  background: #263326;
+  border: 1px solid #465745;
+  padding: 12px;
+  margin-bottom: 12px;
+}
+
+.progress-box > div:first-child {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.progress-bar {
+  height: 16px;
+  background: #111713;
+  border: 1px solid #465745;
+}
+
+#cityProgressBar {
+  height: 100%;
+  width: 0%;
+  background: #9ad17b;
+  transition: 0.7s;
+}
+
+.hud {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.hud div {
+  background: #263326;
+  border: 1px solid #465745;
+  padding: 10px;
+  text-align: center;
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 16px;
+}
+
+button {
+  background: #3d6b35;
+  color: white;
+  border: 1px solid #7ea66f;
+  padding: 10px 14px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #4f8545;
+}
+
+.dialog,
+.history {
+  margin-top: 14px;
+  background: #263326;
+  border: 1px solid #465745;
+  padding: 14px;
+}
+
+.dialog p {
+  margin-top: 6px;
+}
+
+.history h3 {
+  color: #9ad17b;
+  margin-bottom: 10px;
+}
+
+.history ul {
+  padding-left: 20px;
+}
+
+.history li {
+  margin-bottom: 6px;
+}
+
+.mission-panel,
+.impact-panel {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.72);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.mission-box,
+.impact-box {
+  width: 92%;
+  max-width: 760px;
+  background: #fffdf7;
+  color: #263326;
+  border: 2px solid #7ea66f;
+  padding: 24px;
+}
+
+.mission-stats {
+  display: flex;
+  gap: 12px;
+  margin: 16px 0;
+}
+
+.mission-stats span {
+  background: #eef3ea;
+  border: 1px solid #d9ddcf;
+  padding: 8px 12px;
+}
+
+.mission-area {
+  position: relative;
+  height: 320px;
+  border: 1px dashed #777;
+  background: #eef3ea;
+  overflow: hidden;
+}
+
+.mission-item {
+  position: absolute;
+  font-size: 34px;
+  cursor: pointer;
+  user-select: none;
+  transition: 0.2s;
+}
+
+.mission-item:hover {
+  transform: scale(1.2);
+}
+
+.impact-details {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin: 18px 0;
+}
+
+.impact-card {
+  background: #eef3ea;
+  border: 1px solid #d9ddcf;
+  padding: 12px;
+}
+
+.impact-card strong {
+  display: block;
+  color: #3d6b35;
+  font-size: 22px;
+  margin-top: 6px;
+}
+
+.escondido {
+  display: none;
+}
+
+@media (max-width: 800px) {
+  .hud,
+  .impact-details {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

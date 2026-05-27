@@ -1,0 +1,317 @@
+.city {
+  position: relative;
+  height: 520px;
+  overflow: hidden;
+  border: 2px solid #465745;
+  background: #9fc7d1;
+}
+
+.sky {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(#a7c8cf, #d8e7d0);
+  transition: 0.8s;
+}
+
+.sun {
+  position: absolute;
+  top: 45px;
+  right: 80px;
+  width: 70px;
+  height: 70px;
+  background: #f0d76b;
+  border-radius: 50%;
+  box-shadow: 0 0 35px #f0d76b;
+  transition: 0.8s;
+}
+
+.cloud {
+  position: absolute;
+  width: 130px;
+  height: 45px;
+  background: #e8e8e8;
+  border-radius: 40px;
+  opacity: 0.8;
+  transition: 0.8s;
+}
+
+.cloud::before,
+.cloud::after {
+  content: "";
+  position: absolute;
+  background: inherit;
+  border-radius: 50%;
+}
+
+.cloud::before {
+  width: 60px;
+  height: 60px;
+  left: 20px;
+  top: -25px;
+}
+
+.cloud::after {
+  width: 70px;
+  height: 70px;
+  right: 18px;
+  top: -32px;
+}
+
+.cloud-1 {
+  top: 80px;
+  left: 90px;
+}
+
+.cloud-2 {
+  top: 120px;
+  right: 210px;
+}
+
+.factory {
+  position: absolute;
+  left: 55px;
+  bottom: 170px;
+  width: 130px;
+  height: 130px;
+  background: #6e6e6e;
+  border: 4px solid #444;
+}
+
+.factory::before {
+  content: "";
+  position: absolute;
+  right: 18px;
+  top: -80px;
+  width: 35px;
+  height: 80px;
+  background: #555;
+}
+
+.smoke {
+  position: absolute;
+  right: 13px;
+  top: -105px;
+  width: 30px;
+  height: 30px;
+  background: #5e5e5e;
+  border-radius: 50%;
+  opacity: 0.7;
+  animation: smoke 3s infinite;
+}
+
+.smoke-2 {
+  animation-delay: 0.8s;
+}
+
+.smoke-3 {
+  animation-delay: 1.6s;
+}
+
+@keyframes smoke {
+  from {
+    transform: translateY(0) scale(0.8);
+    opacity: 0.7;
+  }
+
+  to {
+    transform: translateY(-80px) scale(1.8);
+    opacity: 0;
+  }
+}
+
+.river {
+  position: absolute;
+  left: -40px;
+  right: -40px;
+  bottom: 95px;
+  height: 80px;
+  background: #4d6f75;
+  transform: rotate(-2deg);
+  transition: 0.8s;
+}
+
+.ground {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 190px;
+  background: #6b6b49;
+  transition: 0.8s;
+}
+
+.house {
+  position: absolute;
+  bottom: 70px;
+  width: 90px;
+  height: 75px;
+  background: #b9744f;
+  border: 3px solid #5c3929;
+}
+
+.house::before {
+  content: "";
+  position: absolute;
+  left: -10px;
+  top: -38px;
+  width: 0;
+  height: 0;
+  border-left: 55px solid transparent;
+  border-right: 55px solid transparent;
+  border-bottom: 40px solid #6b2d2d;
+}
+
+.house::after {
+  content: "";
+  position: absolute;
+  right: 12px;
+  top: 22px;
+  width: 22px;
+  height: 22px;
+  background: #2f2f2f;
+  transition: 0.8s;
+}
+
+.house-1 {
+  left: 270px;
+}
+
+.house-2 {
+  left: 400px;
+}
+
+.house-3 {
+  left: 530px;
+}
+
+.park {
+  position: absolute;
+  right: 80px;
+  bottom: 45px;
+  width: 220px;
+  height: 110px;
+  background: #546b3f;
+  border: 2px solid #35452a;
+  transition: 0.8s;
+}
+
+.park::before {
+  content: "🌱";
+  position: absolute;
+  left: 20px;
+  top: 35px;
+  font-size: 32px;
+}
+
+.park::after {
+  content: "🌱";
+  position: absolute;
+  right: 35px;
+  top: 25px;
+  font-size: 32px;
+}
+
+.trash-area {
+  position: absolute;
+  left: 250px;
+  bottom: 15px;
+  font-size: 28px;
+  transition: 0.5s;
+}
+
+.npc {
+  position: absolute;
+  right: 350px;
+  bottom: 35px;
+  font-size: 38px;
+  animation: walk 2s infinite alternate;
+}
+
+@keyframes walk {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(15px);
+  }
+}
+
+.city.clean .sky {
+  background: linear-gradient(#7fc7ff, #d7f7c2);
+}
+
+.city.clean .river {
+  background: #3fa9f5;
+}
+
+.city.clean .ground {
+  background: #6ea35b;
+}
+
+.city.clean .park {
+  background: #4fa34f;
+}
+
+.city.clean .park::before {
+  content: "🌳";
+}
+
+.city.clean .park::after {
+  content: "🌳";
+}
+
+.city.clean .trash-area {
+  opacity: 0;
+}
+
+.city.clean .smoke {
+  display: none;
+}
+
+.city.clean .house::after {
+  background: #ffe68a;
+  box-shadow: 0 0 14px #ffe68a;
+}
+
+.city.polluted .sky {
+  background: linear-gradient(#6f7475, #9a9a8d);
+}
+
+.city.polluted .sun {
+  opacity: 0.35;
+  box-shadow: none;
+}
+
+.city.polluted .cloud {
+  background: #555;
+}
+
+.city.polluted .river {
+  background: #37494a;
+}
+
+.city.polluted .ground {
+  background: #5b5840;
+}
+
+.city.weather-smog .sky {
+  filter: grayscale(0.6) brightness(0.75);
+}
+
+.city.weather-smog::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(60, 60, 60, 0.18);
+  pointer-events: none;
+}
+
+.city.weather-fresh .sky {
+  filter: saturate(1.2) brightness(1.08);
+}
+
+.city.weather-sunny .sun {
+  transform: scale(1.1);
+  box-shadow: 0 0 50px #f0d76b;
+}
