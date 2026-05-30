@@ -1,11 +1,155 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GreenMemo 🌿</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Righteous&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/hub.css">
 </head>
 <body>
-    
+
+  <!-- ══════════════════════════════════════════
+       TELA 1 — LOBBY
+  ═══════════════════════════════════════════ -->
+  <section id="lobby" class="screen active">
+
+    <!-- Partículas decorativas -->
+    <div class="particles" aria-hidden="true">
+      <span class="p">🌿</span><span class="p">🍃</span>
+      <span class="p">🌱</span><span class="p">💧</span>
+      <span class="p">🌸</span><span class="p">🍀</span>
+      <span class="p">🌻</span><span class="p">🌿</span>
+      <span class="p">⚡</span><span class="p">♻️</span>
+      <span class="p">🐠</span><span class="p">🌳</span>
+    </div>
+
+    <div class="lobby-box">
+      <div class="lobby-badge">Jogo Educativo</div>
+      <h1 class="logo">🌍 GreenMemo</h1>
+      <p class="lobby-tagline">Memorize. Aprenda. Preserve.</p>
+
+      <div class="lobby-phases">
+        <div class="phase-pill" style="--c:#29b6f6">🌊 Água</div>
+        <div class="phase-pill" style="--c:#66bb6a">🌳 Floresta</div>
+        <div class="phase-pill" style="--c:#ffca28">⚡ Energia</div>
+        <div class="phase-pill" style="--c:#ff7043">♻️ Reciclagem</div>
+        <div class="phase-pill" style="--c:#42a5f5">🐠 Oceanos</div>
+      </div>
+
+      <p class="lobby-desc">
+        Cada fase revela um segredo do planeta. Encontre os pares, 
+        responda ao desafio e torne-se um <strong>Guardião da Terra</strong>.
+      </p>
+
+      <button id="start-btn">Iniciar Jornada 🌱</button>
+      <p class="lobby-hint">5 fases · 5 temas · Dificuldade progressiva</p>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════
+       TELA 2 — JOGO
+  ═══════════════════════════════════════════ -->
+  <section id="game-screen" class="screen hidden">
+    <div class="game-container">
+
+      <header class="game-header">
+        <div class="phase-tag" id="phase-tag">Fase 1</div>
+        <h2 id="phase-title"></h2>
+        <p id="question" class="question-text"></p>
+      </header>
+
+      <div class="hud">
+        <div class="hud-item">
+          <span class="hud-icon">❤️</span>
+          <span id="lives">5</span>
+        </div>
+        <div class="hud-item hud-score">
+          <span class="hud-icon">⭐</span>
+          <span id="score">0</span>
+        </div>
+        <div class="hud-item">
+          <span class="hud-icon">🗂️</span>
+          <span id="phase-indicator">1/5</span>
+        </div>
+      </div>
+
+      <div id="game-board" class="board"></div>
+
+      <div class="game-actions">
+        <button id="restart" class="btn-ghost">🔄 Reiniciar Fase</button>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════
+       MODAL — FASE CONCLUÍDA
+  ═══════════════════════════════════════════ -->
+  <div id="modal-phase" class="modal hidden" role="dialog" aria-modal="true">
+    <div class="modal-content">
+      <div class="modal-icon" id="modal-icon">✨</div>
+      <h2 class="modal-title">Fase Concluída!</h2>
+      <div class="modal-fact">
+        <span class="fact-label">💡 Você sabia?</span>
+        <p id="answer-text"></p>
+      </div>
+      <button id="next-phase">Próxima Fase →</button>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════
+       TELA 3 — FIM DE JOGO (vitória)
+  ═══════════════════════════════════════════ -->
+  <section id="end-screen" class="screen hidden">
+    <div class="end-box">
+      <div class="end-trophy">🏆</div>
+      <h1>Jornada Concluída!</h1>
+      <p class="end-subtitle">Parabéns, Guardião da Terra! 🌍</p>
+      <p class="end-desc">
+        Você completou todas as 5 fases do GreenMemo e aprendeu sobre os 
+        maiores desafios do nosso planeta.
+      </p>
+
+      <div class="end-score-box">
+        <span class="end-score-label">Pontuação Final</span>
+        <span class="end-score-value" id="final-score">0</span>
+        <span class="end-score-stars" id="final-stars">⭐⭐⭐</span>
+      </div>
+
+      <div class="end-badges">
+        <div class="badge">🌊<span>Água</span></div>
+        <div class="badge">🌳<span>Floresta</span></div>
+        <div class="badge">⚡<span>Energia</span></div>
+        <div class="badge">♻️<span>Recicl.</span></div>
+        <div class="badge">🐠<span>Oceanos</span></div>
+      </div>
+
+      <button id="play-again">Jogar Novamente 🌱</button>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════
+       MODAL — GAME OVER
+  ═══════════════════════════════════════════ -->
+  <div id="modal-gameover" class="modal hidden" role="dialog" aria-modal="true">
+    <div class="modal-content modal-danger">
+      <div class="modal-icon">💔</div>
+      <h2 class="modal-title">Sem mais vidas!</h2>
+      <p>Não desanime! A Terra precisa de você. Tente novamente!</p>
+      <div class="modal-actions">
+        <button id="retry-btn">🔄 Tentar Novamente</button>
+        <button id="lobby-btn" class="btn-ghost">🏠 Lobby</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/engine.js"></script>
 </body>
 </html>
