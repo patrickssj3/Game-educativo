@@ -2,7 +2,7 @@ import express from "express";
 
 import {
   createPlayer
-} from "../controllers/player.controller.js";
+} from "../controllers/ecohero.player.controller.js";
 
 const router = express.Router();
 

@@ -3,7 +3,7 @@ import express from "express";
 import {
   getCity,
   saveMission
-} from "../controllers/city.controller.js";
+} from "../controllers/ecohero.city.controller.js";
 
 const router = express.Router();
 

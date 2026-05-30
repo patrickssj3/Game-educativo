@@ -1,9 +1,9 @@
 import express from "express";
 import cors from "cors";
 
-import cityRoutes from "./routes/city.routes.js";
-import playerRoutes from "./routes/player.routes.js";
-import rankingRoutes from "./routes/ranking.routes.js";
+import cityRoutes from "./routes/ecohero.city.routes.js";
+import playerRoutes from "./routes/ecohero.player.routes.js";
+import rankingRoutes from "./routes/ecohero.ranking.routes.js";
 
 const app = express();
 const PORT = 3000;

@@ -1,7 +1,7 @@
 import {
   getRankingData,
   addRankingScore
-} from "../services/ranking.service.js";
+} from "../services/ecohero.ranking.service.js";
 
 export function getRanking(req, res) {
   const ranking = getRankingData();

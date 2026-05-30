@@ -1,7 +1,7 @@
 import {
   getCityData,
   addMissionResult
-} from "../services/city.service.js";
+} from "../services/ecohero.city.service.js";
 
 export function getCity(req, res) {
   const city = getCityData();

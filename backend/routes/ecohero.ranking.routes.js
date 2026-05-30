@@ -3,7 +3,7 @@ import express from "express";
 import {
   getRanking,
   saveRanking
-} from "../controllers/ranking.controller.js";
+} from "../controllers/ecohero.ranking.controller.js";
 
 const router = express.Router();
 
