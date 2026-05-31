@@ -9,7 +9,7 @@ let velGeracao = 1500; // Gera lixo a cada 1.5s
 let velEsteira = 7; // Lixo demora 7s pra atravessar a tela
 
 // Sistema de Áudio (Tente carregar, se não achar, ignora)
-const somAcerto = new Audio('./audio/acerto.mp3');
+const somAcerto = new Audio('./audio/Acerto.mp3');
 const somErro = new Audio('./audio/erro.mp3');
 const musicaFundo = new Audio('./audio/musica.mp3');
 musicaFundo.loop = true;
