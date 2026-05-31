@@ -1,0 +1,339 @@
+/* Configurações Gerais */
+/* Configurações Gerais */
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    max-width: 100%;
+    overflow: hidden !important; /* Trava absoluta contra redimensionamento */
+}
+
+body {
+    background-color: #1e3a29; /* Fundo verde escuro */
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    
+    /* Centraliza o contêiner do jogo */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#game-container {
+    width: 900px;
+    height: 600px;
+    background-color: #2a5a3f;
+    position: relative;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    border: 4px solid #4ade80;
+    overflow: hidden;
+}
+
+/* Painel de Pontos e Tempo (HUD) */
+#hud {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 40px;
+    font-size: 24px;
+    font-weight: bold;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.hud-box {
+    background: #111;
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: 2px solid #555;
+}
+
+/* A Esteira Rolante */
+#area-esteira {
+    width: 100%;
+    height: 120px;
+    position: absolute;
+    top: 40%;
+    transform: translateY(-50%);
+    background-color: #333;
+    border-top: 5px solid #555;
+    border-bottom: 5px solid #555;
+    overflow: hidden;
+}
+
+.esteira-fundo {
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(90deg, #444, #444 40px, #333 40px, #333 80px);
+    animation: moverFundo 2s linear infinite;
+}
+
+@keyframes moverFundo {
+    from { background-position: 0 0; }
+    to { background-position: -80px 0; }
+}
+
+/* Os Resíduos na Esteira */
+.residuo {
+    position: absolute;
+    top: 50%; 
+    transform: translateY(-50%);
+    
+    background: transparent !important; 
+    border: none !important; 
+    box-shadow: none !important; 
+    
+    font-size: 50px; 
+    cursor: pointer;
+    user-select: none;
+    filter: drop-shadow(2px 5px 4px rgba(0, 0, 0, 0.6)); 
+    
+    /* AS LINHAS QUE FAZEM O LIXO ANDAR VOLTARAM: */
+    animation-name: moverEsteira; 
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+}
+
+/* Deixa o emoji levemente transparente/vermelho se ele for selecionado mas o jogador errar */
+.residuo.selecionado {
+    transform: translateY(-50%) scale(1.2); /* Fica um pouco maior quando clica */
+    filter: drop-shadow(0px 0px 10px #fbbf24); /* Brilha em amarelo */
+}
+
+
+@keyframes atravessarEsteira {
+    from { left: -10%; }
+    to { left: 110%; }
+}
+
+/* Lixeiras */
+#area-lixeiras {
+    position: absolute;
+    bottom: 30px;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.lixeira {
+    width: 110px;
+    height: 140px;
+    border-radius: 10px 10px 5px 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 18px;
+    cursor: pointer;
+    box-shadow: inset 0 -20px 0 rgba(0,0,0,0.2), 0 5px 10px rgba(0,0,0,0.4);
+    transition: transform 0.2s, filter 0.2s;
+}
+
+.lixeira:hover {
+    transform: scale(1.05);
+    filter: brightness(1.1);
+}
+
+/* Telas de Menu e Game Over */
+#tela-menu {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(30, 58, 41, 0.95);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    display: none; /* Escondido por padrão */
+}
+
+#tela-menu.visivel {
+    display: flex; /* Mostra o menu quando tem a classe .visivel */
+}
+
+#titulo-menu { font-size: 48px; margin-bottom: 10px; }
+#mensagem-menu { font-size: 20px; max-width: 600px; text-align: center; margin-bottom: 40px; }
+
+#btn-iniciar {
+    padding: 15px 40px;
+    font-size: 24px;
+    font-weight: bold;
+    background-color: #4ade80;
+    color: #111;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+#btn-iniciar:hover { background-color: #22c55e; }
+.btn-voltar { color: #4ade80; text-decoration: none; margin-top: 20px; font-size: 18px; }
+
+/* --- NOVOS EFEITOS VISUAIS E ANIMAÇÕES --- */
+
+/* Flash vermelho na tela (Erro/Dano) */
+.flash-vermelho { animation: piscarVermelho 0.3s; }
+@keyframes piscarVermelho {
+    0% { background-color: #7f1d1d; }
+    100% { background-color: #1e3a29; }
+}
+
+/* Pulo da lixeira (Acerto) */
+.pulo { animation: pular 0.3s ease; }
+@keyframes pular {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2) translateY(-15px); }
+    100% { transform: scale(1); }
+}
+
+/* Estrelinhas de acerto */
+.particula {
+    position: absolute;
+    font-size: 24px;
+    pointer-events: none; /* Não atrapalha o clique do jogador */
+    animation: flutuar 1s ease-out forwards;
+    z-index: 100;
+}
+@keyframes flutuar {
+    0% { opacity: 1; transform: translateY(0) scale(1); }
+    100% { opacity: 0; transform: translateY(-60px) scale(1.5); }
+}
+
+/* Brilho Dourado do Modo Frenesi */
+.frenesi-ativo {
+    box-shadow: 0 0 30px #fbbf24 !important;
+    border-color: #fbbf24 !important;
+}
+
+/* --- ESTILO DA NOVA TELA DE SALVAR --- */
+.tela-oculta {
+    display: none; /* Escondido por padrão */
+}
+
+#tela-salvar {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #2a5a3f;
+    padding: 40px;
+    border-radius: 15px;
+    border: 4px solid #4ade80;
+    text-align: center;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.9);
+    z-index: 20;
+    flex-direction: column;
+    align-items: center;
+}
+
+#tela-salvar.visivel {
+    display: flex; /* Mostra a tela quando o JS mandar */
+}
+
+#input-nome {
+    padding: 15px;
+    font-size: 18px;
+    border-radius: 8px;
+    border: 2px solid #4ade80;
+    margin: 20px 0;
+    text-align: center;
+    background: #111;
+    color: white;
+    width: 250px;
+    outline: none;
+}
+
+#input-nome:focus {
+    box-shadow: 0 0 15px #4ade80;
+}
+
+#btn-salvar {
+    padding: 12px 25px;
+    font-size: 20px;
+    background-color: #4ade80;
+    color: #111;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: transform 0.1s;
+}
+
+#btn-salvar:hover { background-color: #22c55e; transform: scale(1.05); }
+
+/* --- NOVO VISUAL DAS LIXEIRAS --- */
+.lixeira {
+    position: relative;
+    /* Arredonda as pontas de baixo para parecer um cesto */
+    border-radius: 5px 5px 25px 25px; 
+    /* O 'inset' cria uma faixa escura no topo parecendo a borda/tampa da lixeira */
+    box-shadow: 
+        inset 0 25px 0 rgba(0, 0, 0, 0.25), 
+        0 10px 15px rgba(0, 0, 0, 0.4); 
+    border: 3px solid rgba(255, 255, 255, 0.2);
+    
+    /* Organiza o texto da lixeira para ficar na parte de baixo */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    padding-bottom: 15px;
+    
+    color: white !important;
+    font-weight: bold;
+    font-size: 18px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); /* Deixa o texto mais legível */
+    transition: transform 0.1s, filter 0.1s;
+}
+
+/* Esse truque coloca o símbolo de reciclagem no centro de TODAS as lixeiras automaticamente */
+.lixeira::before {
+    content: "♻️";
+    font-size: 45px;
+    position: absolute;
+    top: 15%;
+    opacity: 0.85; /* Deixa o símbolo levemente transparente */
+    filter: drop-shadow(0px 4px 2px rgba(0,0,0,0.4));
+}
+
+/* Melhora a animação de quando você acerta o lixo dentro dela */
+.lixeira.pulo {
+    transform: scale(1.15) translateY(-10px);
+    filter: brightness(1.4);
+}
+@keyframes moverEsteira {
+    0% { left: -80px; } /* Nasce fora da tela na esquerda */
+    100% { left: 100%; } /* Morre fora da tela na direita */
+}
+
+/* --- TÚNEIS DA ESTEIRA (Sombras de Profundidade) --- */
+
+/* Escuridão onde o lixo NASCE (Esquerda) */
+#area-esteira::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0; bottom: 0; /* Alinhado perfeitamente com a esteira interna */
+    width: 100px; /* Largura da sombra */
+    
+    /* Degradê reto de quase preto para 100% transparente */
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0) 100%);
+    
+    z-index: 10; 
+    pointer-events: none; 
+}
+
+/* Escuridão onde o lixo SOME (Direita) */
+#area-esteira::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 0; bottom: 0;
+    width: 100px;
+    
+    /* Degradê inverso na direita */
+    background: linear-gradient(to left, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0) 100%);
+    
+    z-index: 10;
+    pointer-events: none;
+}
