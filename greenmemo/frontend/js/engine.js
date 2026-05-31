@@ -6,6 +6,10 @@
 
 "use strict";
 
+const musicaFundo = new Audio("./audio/musica-greenmemo.mp3");
+musicaFundo.loop = true;
+musicaFundo.volume = 0.3;
+
 /* ──────────────────────────────────────────────────────
    1. DADOS DAS FASES
 ────────────────────────────────────────────────────── */
@@ -440,6 +444,8 @@ function restartCurrentPhase() {
 }
 
 function goToLobby() {
+  musicaFundo.pause();
+  musicaFundo.currentTime = 0;
   hideModal("modal-gameover");
   State.currentPhase = 0;
   State.lives  = 5;
@@ -452,6 +458,8 @@ function goToLobby() {
 }
 
 function startFreshGame() {
+  musicaFundo.currentTime = 0;
+  musicaFundo.play().catch(() => {});
   State.currentPhase = 0;
   State.lives  = 5;
   State.score  = 0;
