@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>TrashDash - Triagem Ecológica</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+
+    <div id="game-container">
+        <!-- HUD atualizado com Combos -->
+        <header id="hud">
+            <div class="hud-box">Tempo: <span id="tempo">60</span>s</div>
+            <div class="hud-box" id="caixa-combo">Combo: <span id="combo">0</span> <span id="frenesi-alerta" style="display: none; color: #fbbf24;">🔥 FRENESI!</span></div>
+            <div class="hud-box">Pontos: <span id="pontos">0</span></div>
+        </header>
+
+        <main id="area-esteira">
+            <div class="esteira-fundo"></div>
+        </main>
+
+        <footer id="area-lixeiras">
+            <div class="lixeira" id="papel" style="background-color: #3b82f6;">Papel</div>
+            <div class="lixeira" id="plastico" style="background-color: #ef4444;">Plástico</div>
+            <div class="lixeira" id="vidro" style="background-color: #22c55e;">Vidro</div>
+            <div class="lixeira" id="metal" style="background-color: #eab308;">Metal</div>
+            <div class="lixeira" id="organico" style="background-color: #8b4513;">Orgânico</div>
+        </footer>
+
+
+        <div id="tela-salvar" class="tela-oculta">
+            <h2>Fim de Tempo! ⏱️</h2>
+            <p>Pontuação Final: <strong id="pontos-finais">0</strong></p>
+            <input type="text" id="input-nome" placeholder="Digite seu nome heróico..." maxlength="15">
+            <button id="btn-salvar">Salvar no Ranking</button>
+        </div>
+
+        <div id="tela-menu" class="visivel">
+            <h1 id="titulo-menu">♻️ TrashDash</h1>
+            <p id="mensagem-menu">Selecione o lixo na esteira e clique na lixeira correta! Cuidado com as pegadinhas! (🐱/☢️)</p>
+            
+            <button id="btn-iniciar">Jogar Agora</button>
+            <br><br>
+            
+            <a href="../../lobby/lobby.html" class="btn-voltar">&larr; Voltar para o Lobby</a>
+            <br><br>
+            <a href="ranking.html" style="color: #fbbf24; text-decoration: none; font-weight: bold; font-size: 18px;">🏆 Ver Ranking dos Melhores</a>
+        </div>
+
+    <script src="./js/script.js"></script>
+</body>
+</html>

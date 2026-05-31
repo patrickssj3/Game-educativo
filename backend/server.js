@@ -4,6 +4,7 @@ import cors from "cors";
 import cityRoutes from "./routes/ecohero.city.routes.js";
 import playerRoutes from "./routes/ecohero.player.routes.js";
 import rankingRoutes from "./routes/ecohero.ranking.routes.js";
+import trashdashRoutes from "./routes/trashdash.routes.js";
 
 const app = express();
 const PORT = 3000;
@@ -20,6 +21,7 @@ app.get("/", function (req, res) {
 app.use("/api/city", cityRoutes);
 app.use("/api/player", playerRoutes);
 app.use("/api/ranking", rankingRoutes);
+app.use("/api/trashdash", trashdashRoutes);
 
 app.listen(PORT, function () {
   console.log(`EcoHero API rodando em http://localhost:${PORT}`);
